@@ -3,14 +3,13 @@
 #include <netinet/in.h>//for hton
 #include <stdlib.h>//for exit
 #include <unistd.h>//for close
-//#include <netdb.h>//removed and has no effect
 using namespace std;
 
 int main()
 {
     int client;
     bool end = false;
-    int bufsize = 100;
+    int bufsize = 100;//max lenghth of each word, red=3
     char buffer[bufsize];
 
     struct sockaddr_in server_addr;
@@ -19,8 +18,9 @@ int main()
     server_addr.sin_port = htons(portNum);
 
 
-    client = socket(AF_INET, SOCK_STREAM, 0);
-    //connect=-1 if no server is found, = 0 otherwise
+    client = socket(AF_INET, SOCK_STREAM, 0);//initializing the TCP socket
+    
+    //connect return -1 if the server is not compiled, return 0 otherwise
     if( connect(client,(struct sockaddr *)&server_addr, sizeof(server_addr))==-1)
         cout<<"No server is found, programing terminated."<<endl;   
     else
@@ -32,10 +32,10 @@ int main()
             cout << "\nClient: ";
             while (true)
             {
-                cin >> buffer;
-                send(client, buffer, bufsize, 0);
-                if(*buffer=='.') break;
-                if(*buffer=='0')
+                cin >> buffer;//your message
+                send(client, buffer, bufsize, 0);//send it to the server
+                if(*buffer=='.') break;//tells the server that you have done talking
+                if(*buffer=='0')//tells the server to terminate the connection
                 {
                     end=true;
                     break;
@@ -44,9 +44,9 @@ int main()
             cout << "Server: ";
             while (true)
             {
-                recv(client, buffer, bufsize, 0);
+                recv(client, buffer, bufsize, 0);//receive the message from the server
                 cout << buffer << " ";
-                if(*buffer=='.') break;
+                if(*buffer=='.') break;//the message from the server must end with * so the client knows is its turn to talk.
                 if(*buffer=='0') 
                  {
                     end =true;
