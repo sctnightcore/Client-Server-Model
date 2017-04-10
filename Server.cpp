@@ -29,7 +29,7 @@ int main()
     //initialiting a TCP socket connection, cout<<client=3
     client = socket(AF_INET, SOCK_STREAM, 0);
     
-    ///binding the socket, it must return 0
+    ///binding the socket
     if (bind(client,(struct sockaddr*)&server_addr,size)<0)
     {
         cout<<"Error binding."<<endl;
@@ -40,24 +40,22 @@ int main()
         cout << "Server: Waiting for incoming connection..." << endl;
         listen(client, 1);//waiting to be connected with clients
         
-        server = accept(client,(struct sockaddr *)&server_addr,&size);//server=4
-
+        server = accept(client,(struct sockaddr *)&server_addr,&size);
         cout<<"Connection established."<<endl;
         cout << "Enter 0 to end the connection" << endl;
     
     // sending and receiving messages
-
     //maximum size of each word
-    int bufsize = 100;
-    char buffer[bufsize];
+    int msize = 100;
+    char message[msize];
      do{
          cout << "Client: ";
          while(true)
          {
-            recv(server, buffer, bufsize, 0);//receive TCp socket
-            cout << buffer << " ";//put space between each word
-            if(*buffer=='.') break;// know is my turn to speak
-            if (*buffer == '0')//received connection termination request from the client.
+            recv(server, message, msize, 0);//receive TCp socket
+            cout << message << " ";//put space between each word
+            if(*message=='.') break;// know is my turn to speak
+            if (*message == '0')//received connection termination request from the client.
             {
                 end = true;
                 return 0;
@@ -67,10 +65,10 @@ int main()
             cout << "\nServer: ";
           while(true)
              {
-                cin >> buffer;
-                send(server, buffer, bufsize, 0);
-                if(*buffer=='.') break;
-                if (*buffer == '0') 
+                cin >> message;
+                send(server, message, msize, 0);
+                if(*message=='.') break;
+                if (*message == '0') 
                 {
                     end = true;
                     break;
