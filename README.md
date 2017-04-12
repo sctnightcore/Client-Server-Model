@@ -8,6 +8,8 @@ Link to the tutorial: http://users.pja.edu.pl/~jms/qnx/help/tcpip_4.25_en/prog_g
 TCP/IP Libraries: http://users.pja.edu.pl/~jms/qnx/help/tcpip_4.25_en/prog_guide/libraries.html
 
 
+
+
 The limitations that I need to work on are:
 
 1, Only one to one connection. For mutiple clients, I need to learn about threading.
