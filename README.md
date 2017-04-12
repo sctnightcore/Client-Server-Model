@@ -3,6 +3,10 @@ A Client/Server model that communicate on two terminals in the linux enviroment.
 
 Socket type used: Stream socket.
 
+Tool: visual studio code--love the split editor function
+
+download it here:https://code.visualstudio.com/download
+
 Link to the tutorial: http://users.pja.edu.pl/~jms/qnx/help/tcpip_4.25_en/prog_guide/sock_advanced_tut.html
 
 TCP/IP Libraries: http://users.pja.edu.pl/~jms/qnx/help/tcpip_4.25_en/prog_guide/libraries.html
