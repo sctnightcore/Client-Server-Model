@@ -29,3 +29,15 @@ The limitations that I need to work on are:
 Currently, I am working on 2 and 3. At the same time, I will also study threading.
 
 
+# 04/15/2017<br />
+Fixed the issue of binding the socket.the issue occured after closing the program and try to recompile it.<br />
+
+cause:TCP sockets can have relatively long delay between adding data to the send buffer and having the TCP implementation really send that data.<br />
+So, when the TCP socket is closed, the send buffer still has the pending data which is actually considered as sent. The socket then will go into a state call time_wait. In this state, the socket will wait untill all pending data has been successfully sent or until time out.<br />
+In short, even though the socket is closed, the data is still pending. <br />
+
+Solution: using SO_REUSEADDR solved the issue and which play an important role in the way of how sockets bind to the ports.
+<br />
+Link to the solutions:<br />
+1, http://stackoverflow.com/questions/14388706/socket-options-so-reuseaddr-and-so-reuseport-how-do-they-differ-do-they-mean-t
+2, http://stackoverflow.com/questions/24194961/how-do-i-use-setsockoptso-reuseaddr
