@@ -45,7 +45,10 @@ int main()
     */
      client = socket(AF_INET, SOCK_STREAM, 0);
 
-     if(client>0)
+     //if(client>0)
+    int one=1;
+    if(setsockopt(client, SOL_SOCKET, SO_REUSEADDR, &one, sizeof(one))==0)
+        //SO_REUSEADDR--allow to reuse the port even if the process crash or been killed.
      cout<<"Sucessfully established socket connection."<<endl;
      else
        {
