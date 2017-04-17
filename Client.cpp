@@ -24,6 +24,7 @@ int main()
     server.sin_family = AF_INET;
     server.sin_port = htons(1234);
 
+    //connect to the server that is in the listenning state
    if( connect(client,(struct sockaddr *)&server, sizeof(server))==-1)
         cout<<"No server is found, programing terminated."<<endl;  
 
