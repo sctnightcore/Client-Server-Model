@@ -49,7 +49,7 @@ The limitations that I need to work on are:
 Currently, I am working on 2 and 3. At the same time, I will also study threading.
 
 
-# 04/15/2017<br />
+** 04/15/2017**<br />
 Fixed the issue of binding the socket.the issue occured after closing the program and try to recompile it.<br />
 
 cause:TCP sockets can have relatively long delay between adding data to the send buffer and having the TCP implementation really send that data.<br />
