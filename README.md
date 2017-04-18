@@ -8,7 +8,7 @@ Tool: visual studio code--love the split editor function
 A socket is the basic building block for communication.<br />
 <br />
 **What is a stream socket?**<br />
-A bidirectional flow of data that when two of this sockets connected, it provide an interface.<br />
+A bidirectional flow of data that when two of this sockets connected, it provides an interface.<br />
 <br />
 **How dose this program work?**<br />
 The first step is to create a stream socket.<br />
